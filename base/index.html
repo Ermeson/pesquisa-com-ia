@@ -225,6 +225,8 @@
 
         .detail-content .code-card pre {
             margin: 0;
+            width: 100%;
+            box-sizing: border-box;
             background: transparent;
             color: #dbe2ea;
             padding: 1.3em 1.5em 1.5em;
@@ -239,6 +241,12 @@
         .detail-content .code-card code {
             color: inherit;
             font-family: inherit;
+        }
+
+        /* rótulo "Exemplo" acima de listas/blocos de exemplo: sempre monoespaçado e cinza */
+        .detail-content p.example-label {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            color: #a3a3a3;
         }
 
         .chapter-intro {
@@ -369,15 +377,13 @@ Texto: "O prazo de entrega foi longo." →</code></pre>
                 <h1>Engenharia de Prompts</h1>
                 <h2>Meta Prompting</h2>
                 <p>Usa o próprio modelo para criar, refinar ou avaliar outros prompts, automatizando parte do processo de engenharia de prompts e melhorando resultados futuros.</p>
-                <pre><code>Reescreva o prompt abaixo para ficar mais claro e específico,
-mantendo o mesmo objetivo: "Fale sobre marketing."</code></pre>
+                <pre><code>Reescreva o prompt abaixo para ficar mais claro e específico, mantendo o mesmo objetivo: "Fale sobre marketing."</code></pre>
             </article>
             <article>
                 <h1>Engenharia de Prompts</h1>
                 <h2>Step-back Prompting</h2>
                 <p>Antes de resolver o problema específico, o modelo é instruído a identificar o princípio geral por trás dele, o que melhora o raciocínio final.</p>
-                <pre><code>Antes de responder, explique o princípio geral envolvido nesta
-pergunta e só então resolva: "Qual o melhor horário para publicar um post?"</code></pre>
+                <pre><code>Antes de responder, explique o princípio geral envolvido nesta pergunta e só então resolva: "Qual o melhor horário para publicar um post?"</code></pre>
             </article>
         </section>
 
@@ -488,6 +494,9 @@ pergunta e só então resolva: "Qual o melhor horário para publicar um post?"</
                 return { h1, introHTML, topics };
             });
 
+            // capítulo final fixo, adicionado sempre pelo motor (não vem do deck-source)
+            chapters.push({ h1: 'Obrigado!', introHTML: '', topics: [] });
+
             // ---------- 2. Montar a sequência de slides ----------
             // Por capítulo: [capa (h1 sozinho)] -> [intro + lista dos tópicos (h2 em prévia)] -> [um slide por tópico, com o h2 no topo]
             const slides = [];
@@ -543,6 +552,12 @@ pergunta e só então resolva: "Qual o melhor horário para publicar um post?"</
                     const wrap = document.createElement('div');
                     wrap.className = 'detail-content';
                     wrap.innerHTML = slide.contentHTML;
+
+                    // parágrafo "Exemplo" (com ou sem dois-pontos) sempre em mono + cinza
+                    wrap.querySelectorAll('p').forEach((p) => {
+                        const label = p.textContent.trim().replace(/:$/, '').toLowerCase();
+                        if (label === 'exemplo') p.classList.add('example-label');
+                    });
 
                     // bullets ganham o marcador refinado (ícone + texto)
                     wrap.querySelectorAll('li').forEach((li) => {
