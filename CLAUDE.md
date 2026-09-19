@@ -95,6 +95,17 @@ Não é preciso mexer no script para isso — é consequência direta de como vo
 
 ## Referência rápida do visual/motor (para contexto, não para copiar manualmente)
 
+- Crachá de autoria: só na primeira tela do deck (a capa inicial) e na tela final
+  "Obrigado!" — não nas capas dos demais capítulos — aparece automaticamente, acima
+  do título e alinhada à esquerda, a foto redonda, grande
+  (`clamp(5rem, 10vw, 7.5rem)`, `https://avatars.githubusercontent.com/u/4398869?v=4`)
+  e o nome "Prof. Ermeson Silva" (`#title-badge` dentro de `#title-wrap`, controlado
+  por JS: visível apenas quando `current === 0` ou é o último slide). É padrão do
+  motor — não precisa (e não deve) ser adicionado manualmente no `#deck-source`.
+- Tela final "Obrigado!": além do crachá de autoria, mostra também o e-mail
+  `ermeson.silva@fapce.edu.br` logo abaixo do título (`#title-email`), visível apenas
+  nesse último slide. Essa tela é sempre adicionada pelo motor (ver capítulo final
+  fixo no script) — também não é conteúdo do `#deck-source`.
 - Fonte: Inter (Google Fonts), carregada no `<head>`.
 - Marcador de lista: ícone SVG "quadrado arredondado + chevron" (`markerSVG` no
   script), reaproveitado tanto na lista-prévia (opacidade menor) quanto nos bullets do
