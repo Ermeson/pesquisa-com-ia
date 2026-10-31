@@ -252,34 +252,6 @@
             flex: 1 1 auto
         }
 
-        .kidmax {
-            flex: 0 0 auto;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid var(--line);
-            background: var(--surface);
-            color: var(--ink);
-            border-radius: 8px;
-            cursor: pointer
-        }
-
-        .kidmax:hover {
-            border-color: var(--ink)
-        }
-
-        .kidmax svg {
-            width: 15px;
-            height: 15px;
-            stroke: currentColor;
-            fill: none;
-            stroke-width: 1.8;
-            stroke-linecap: round;
-            stroke-linejoin: round
-        }
-
         /* wide map */
         .map {
             position: relative
@@ -549,36 +521,6 @@
             font-variant-numeric: tabular-nums
         }
 
-        .ragdiagram {
-            width: 100%;
-            height: auto;
-            display: block;
-            margin-top: 6px
-        }
-
-        .ragdiagram rect {
-            fill: color-mix(in srgb, var(--gc) 10%, var(--surface));
-            stroke: var(--gc);
-            stroke-width: 1.5
-        }
-
-        .ragdiagram text {
-            fill: var(--ink);
-            font: 600 12.5px/1.3 var(--f-body)
-        }
-
-        .ragdiagram .sub {
-            fill: var(--muted);
-            font: 400 11px var(--f-body)
-        }
-
-        .ragdiagram path {
-            stroke: var(--gc);
-            stroke-width: 1.8;
-            fill: none;
-            marker-end: url(#arrow)
-        }
-
         /* narrow tree */
         .map.narrow .hub {
             margin-bottom: 14px
@@ -680,15 +622,15 @@
         <header class="top">
             <div>
                 <h1>Fluxo de análise de conteúdo com Gemini Notebook</h1>
-                <p>Clique em uma etapa para abrir os itens. Clique em um item para ver a ideia central e, nas etapas
-                    de codificação e análise, o espaço para registrar o prompt usado.</p>
+                <p>Clique em uma etapa para abrir os itens. Nos detalhes, consulte as orientações e os prompts
+                    sugeridos, que podem ser editados para registrar o uso na análise.</p>
             </div>
             <div class="tools">
                 <ul class="legend" aria-label="Legenda das cores">
                     <li class="g1"><i></i>Preparar a análise</li>
                     <li class="g2"><i></i>Codificar e analisar</li>
                     <li class="g3"><i></i>Garantir rigor</li>
-                    <li class="g4"><i></i>Ferramentas e técnicas</li>
+                    <li class="g4"><i></i>Método, revisão e ferramentas</li>
                 </ul>
                 <button class="reset" id="reset" type="button">Recolher tudo</button>
                 <button class="themetoggle" id="themeToggle" type="button" aria-label="Alternar tema claro/escuro"></button>
@@ -698,10 +640,8 @@
         <main id="map" class="map"></main>
 
         <details class="pend">
-            <summary>Itens a confirmar e desenvolver</summary>
+            <summary>Itens a desenvolver</summary>
             <ul>
-                <li>Renomeie os documentos antes de anexar, para identificá-los com facilidade nas respostas.</li>
-                <li>Peça a análise por partes, para não poluir a janela de contexto.</li>
                 <li>Adicionar outras ferramentas e técnicas de apoio ao método, conforme forem testadas.</li>
             </ul>
         </details>
@@ -725,58 +665,119 @@
                 ]
             },
             {
-                t: 'Definição dos objetivos', g: 1, kids: [
+                t: '1. Definição dos objetivos', g: 1, kids: [
                     {
                         t: 'Objetivos da análise',
-                        k: 'Antes de tocar no corpus, deixe claro por que a análise está sendo feita e o que se espera encontrar na literatura.',
-                        list: ['Quais os objetivos da análise?', 'O que gostaria de encontrar na literatura?']
+                        k: 'Toda análise precisa partir de um objetivo de busca: defina o que gostaria de encontrar na literatura.',
+                        items: [
+                            { t: 'Quais são os objetivos da análise?', children: [{ t: 'Uma análise precisa partir de um objetivo de busca. O que gostaria de encontrar na literatura?' }] },
+                            {
+                                t: 'Exemplos',
+                                children: [
+                                    { t: 'Identificar os principais desafios do uso da IA Generativa no ensino médico.' },
+                                    { t: 'Quais são os principais benefícios do uso de IA Generativa na formação em medicina?' },
+                                    { t: 'Quais são os principais autores que tratam deste tema?' },
+                                    { t: 'Quais são os temas de pesquisa que permanecem em aberto?' },
+                                    { t: 'Em qual medida existem métodos para ensino de IA na graduação?' }
+                                ]
+                            }
+                        ]
                     }
                 ]
             },
             {
-                t: 'Organização do corpus', g: 1, kids: [
+                t: '2. Organização do corpus', g: 1, kids: [
                     {
-                        t: 'Clusterização inicial',
-                        k: 'Antes de criar códigos, agrupe o corpus em clusters temáticos. Isso revela os grandes blocos de assunto antes de entrar no detalhe.',
-                        list: ['Inicie clusterizando o corpus de análise.']
+                        t: 'Clusterização e identificação dos arquivos',
+                        k: 'Inicie clusterizando o corpus de análise e organize os arquivos que serão examinados.',
+                        items: [
+                            { t: 'Separe os arquivos que serão analisados.' },
+                            { t: 'Renomeie-os com um padrão, por exemplo: artigo-1.pdf, artigo-2.pdf etc. Isso ajuda no rastreio da informação.' }
+                        ]
                     }
                 ]
             },
             {
-                t: 'Criação dos códigos', g: 2, kids: [
+                t: '3. Criação dos códigos', g: 2, kids: [
                     {
-                        t: 'Lista de 20 códigos',
-                        k: 'A partir dos clusters, peça um prompt que gere uma lista de códigos para guiar a leitura dos materiais: cada código com um nome curto e uma descrição.',
-                        list: ['Formato esperado: código + descrição', 'Meta: 20 códigos cobrindo os clusters identificados'],
-                        prompt: true
+                        t: 'Propor códigos alinhados aos objetivos',
+                        k: 'Com base nos objetivos da análise, estabeleça os códigos de análise. Você pode usar qualquer ferramenta de IA que preferir: Claude, Gemini, ChatGPT etc.',
+                        items: [
+                            { t: 'Solicite até 20 códigos, organizados por categoria, código e descrição.' },
+                            { t: 'As categorias e os códigos devem estar alinhados aos objetivos e fundamentados no conteúdo das fontes.' }
+                        ],
+                        prompt: 'Você é um assistente de pesquisa e vai apoiar uma análise de conteúdo segundo Bardin. Com base nos objetivos da análise a seguir e nos artigos em PDF fornecidos, proponha até 20 códigos para orientar a análise do corpus. Organize o resultado em uma tabela com as colunas Categoria, Código e Descrição do código. As categorias e os códigos devem estar alinhados aos objetivos e fundamentados no conteúdo das fontes. Regra: não acrescente informações que não estejam nos artigos. Os objetivos da análise são: [informe os objetivos desta análise]'
                     }
                 ]
             },
             {
-                t: 'Análise dos materiais', g: 2, kids: [
+                t: '4. Análise dos materiais', g: 2, kids: [
                     {
-                        t: 'Anexar os materiais',
-                        k: 'Anexe os materiais no Gemini Notebook antes de pedir qualquer análise.',
-                        attn: 'Renomeie os documentos antes de anexar, para identificá-los com facilidade nas respostas.'
+                        t: 'Anexar e contextualizar os materiais',
+                        k: 'Anexe os materiais ao Gemini Notebook e crie um prompt de contextualização para as próximas etapas.',
+                        attn: 'Use apenas as informações presentes nos materiais. Se algo não estiver claro ou não aparecer nos arquivos, informe isso em vez de inferir.',
+                        prompt: 'Os arquivos anexados são o corpus documental desta pesquisa para uma análise de conteúdo segundo Bardin. Leia-os como um conjunto de artigos científicos e use apenas as informações presentes nesses materiais. Considere os objetivos da análise e os códigos definidos anteriormente como referência para as próximas etapas. Preserve o sentido original dos textos, diferencie os artigos quando necessário e indique a fonte usada para cada informação. Se algo não estiver claro ou não aparecer nos arquivos, informe isso em vez de inferir. Nunca faça inferências. Quando não houver a informação, informe na resposta.'
                     },
                     {
-                        t: 'Analisar por partes',
-                        k: 'Solicite a análise diante dos códigos por partes, não todos de uma vez, para não poluir a janela de contexto.',
-                        list: ['Afirmação', 'Evidência', 'Autor'],
-                        prompt: true
+                        t: 'Conduzir a primeira etapa por código',
+                        k: 'Faça a análise por categorias e examine um código por vez. Preserve o contexto e diferencie os artigos quando necessário.',
+                        items: [
+                            { t: 'Rastreie cada achado: afirmação, evidência, autor-ano e documento.' },
+                            { t: 'Se não encontrar evidências para um código, informe isso claramente.' }
+                        ],
+                        prompt: 'Conduza a primeira etapa da análise de conteúdo segundo Bardin, examinando os artigos com base nos códigos definidos anteriormente. Analise um código por vez, começando por [nome do código]. Identifique trechos pertinentes e apresente cada achado em uma tabela com as colunas Afirmação, Evidência (trecho ou síntese fiel), Autor-ano e Documento (nome do arquivo). Relacione cada afirmação ao código, preserve o contexto do trecho e não infira informações que não estejam nas fontes. Se não encontrar evidências para o código, informe isso claramente.'
                     },
                     {
-                        t: 'Fundamentar a discussão',
-                        k: 'Cada afirmação levantada precisa estar amarrada a uma evidência do texto e ao autor que a sustenta, para a discussão ficar fundamentada.'
+                        t: 'Registrar os achados e fundamentar a discussão',
+                        k: 'Organize os achados em um arquivo separado. Fundamente a discussão relacionando cada afirmação às evidências dos artigos e à sua fonte.'
                     }
                 ]
             },
             {
-                t: 'Rigor', g: 3, kids: [
-                    { t: 'Lacunas na literatura', k: 'Identifique o que ainda não foi respondido pelos estudos analisados.' },
-                    { t: 'Principais métodos do corpus', k: 'Mapeie os métodos predominantes usados pelos estudos do corpus.' },
-                    { t: 'Limitações nos estudos', k: 'Reúna as limitações declaradas pelos próprios autores.' },
-                    { t: 'Pesquisas futuras', k: 'Liste as sugestões de pesquisas futuras apontadas na literatura, como agenda de pesquisa.' }
+                t: '5. Técnicas para garantir rigor', g: 3, kids: [
+                    {
+                        t: 'Lacunas na literatura',
+                        k: 'Identifique temas pouco explorados ou ausentes, limitações apontadas pelos autores e questões que permanecem sem resposta.',
+                        attn: 'Diferencie lacunas explicitamente apontadas pelos autores das observadas a partir do conjunto de artigos. Não trate ausência de informação no corpus como ausência na literatura em geral.',
+                        prompt: 'Com base nos artigos do corpus, identifique lacunas na literatura relacionadas aos objetivos da análise. Considere temas pouco explorados ou ausentes, limitações apontadas pelos autores e questões que permanecem sem resposta. Para cada lacuna, apresente uma tabela com Lacuna identificada, Justificativa baseada no corpus, Evidência, Autor-ano e Documento (nome do arquivo). Diferencie lacunas explicitamente apontadas pelos autores das observadas a partir do conjunto de artigos. Use apenas as fontes fornecidas e não trate ausência de informação no corpus como ausência na literatura em geral.'
+                    },
+                    {
+                        t: 'Principais métodos do corpus',
+                        k: 'Identifique os métodos utilizados e agrupe os estudos que adotam métodos semelhantes, preservando as diferenças entre eles.',
+                        attn: 'Use apenas informações do corpus e sinalize quando um estudo não informar claramente seu método.',
+                        prompt: 'Com base nos artigos, identifique os métodos utilizados e agrupe os estudos que adotam métodos semelhantes. Apresente uma tabela com Grupo de métodos, Descrição, Estudos incluídos (autor-ano) e Evidência (trecho ou síntese fiel), indicando também o Documento (nome do arquivo) de cada estudo. Preserve as diferenças entre métodos semelhantes, use apenas informações do corpus e sinalize quando um estudo não informar claramente seu método.'
+                    },
+                    {
+                        t: 'Limitações nos estudos',
+                        k: 'Registre as limitações mencionadas pelos autores ou claramente sustentadas pelo texto, sem inferências.',
+                        attn: 'Se um artigo não mencionar limitações, indique isso claramente.',
+                        prompt: 'Com base nos artigos do corpus, identifique as limitações de cada estudo. Registre apenas limitações mencionadas pelos autores ou claramente sustentadas pelo texto, sem inferências. Apresente uma tabela com Limitação, Tipo (declarada pelos autores ou identificada no texto), Evidência, Autor-ano e Documento (nome do arquivo). Se um artigo não mencionar limitações, indique isso claramente.'
+                    },
+                    {
+                        t: 'Pesquisas futuras (agenda de pesquisa)',
+                        k: 'Agrupe sugestões semelhantes e diferencie recomendações explícitas dos autores de possibilidades sintetizadas a partir do conjunto de estudos.',
+                        prompt: 'Com base nos artigos do corpus, identifique as pesquisas futuras sugeridas pelos autores e organize-as em uma agenda de pesquisa. Agrupe sugestões semelhantes e apresente uma tabela com Tema ou questão de pesquisa, Pesquisa futura sugerida, Justificativa no corpus, Autor-ano e Documento (nome do arquivo). Diferencie recomendações explícitas dos autores de possibilidades sintetizadas a partir do conjunto de estudos. Use apenas informações das fontes, sem apresentar inferências como recomendações dos autores.'
+                    }
+                ]
+            },
+            {
+                t: '6. Retroalimentar o método', g: 4, kids: [
+                    {
+                        t: 'Descrever as ferramentas e técnicas no método',
+                        k: 'Adicione as ferramentas e técnicas utilizadas à seção de método. Exemplo: A análise de conteúdo foi conduzida com apoio do Gemini Notebook, utilizado para organizar e examinar o corpus de artigos científicos. Inicialmente, os documentos foram inseridos na plataforma e contextualizados como fontes da pesquisa, tendo como referência os objetivos da análise. Em seguida, foram elaboradas categorias e códigos alinhados a esses objetivos. O conteúdo dos artigos foi analisado por código, com registro das afirmações, evidências textuais, autoria e documento de origem. Também foram sintetizadas as lacunas apontadas ou observáveis no corpus, os métodos empregados, as limitações dos estudos e as sugestões de pesquisas futuras. As respostas geradas foram conferidas com os documentos originais, preservando-se a rastreabilidade das evidências e distinguindo as informações explicitamente declaradas pelos autores das sínteses produzidas a partir do conjunto de estudos. Maiores detalhes estão disponibilizados no Termo de Declaração de Uso de IA, no Anexo A.'
+                    }
+                ]
+            },
+            {
+                t: '7. Realizar um polimento no texto', g: 4, kids: [
+                    {
+                        t: 'Revisar a progressão e a redação',
+                        k: 'Revise o texto final para que o fluxo da análise seja cadenciado, com progressão lógica entre os argumentos e as afirmações.',
+                        items: [
+                            { t: 'Cuidado com o texto truncado ou blocado.' },
+                            { t: 'Evite texto copiado e colado, sob qualquer hipótese.' }
+                        ]
+                    }
                 ]
             },
             {
@@ -785,12 +786,6 @@
                         t: 'Notas de uso',
                         k: 'Dois cuidados práticos para manter a qualidade das respostas no Gemini Notebook.',
                         list: ['Renomeie os documentos antes de anexar, para identificá-los com facilidade.', 'Peça a análise por partes, para não poluir a janela de contexto.']
-                    },
-                    {
-                        t: 'RAG no Gemini Notebook',
-                        k: 'O Gemini Notebook responde com base nos documentos anexados usando RAG (Retrieval-Augmented Generation): busca os trechos mais relevantes do corpus e só então gera a resposta, o que reduz alucinação e mantém a resposta rastreável até a fonte.',
-                        diagram: 'rag',
-                        max: true
                     }
                 ]
             }
@@ -800,6 +795,8 @@
         const mq = window.matchMedia('(min-width: 1040px)');
         let st = { a: null, c: null };
         let fullEl = null;
+        let fullPlaceholder = null;
+        let fullCloseHandler = null;
 
         function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
 
@@ -839,45 +836,23 @@
 
         initTheme();
 
-        function ragDiagramHTML() {
-            return `<svg class="ragdiagram" viewBox="0 0 640 170" role="img" aria-label="Fluxo de RAG: documentos anexados levam a um índice de embeddings, depois à recuperação dos trechos relevantes e por fim à geração da resposta pelo modelo.">
-                <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--gc)"/></marker></defs>
-                <rect x="10" y="55" width="130" height="60" rx="10"/>
-                <text x="75" y="80" text-anchor="middle">Documentos</text>
-                <text class="sub" x="75" y="98" text-anchor="middle">anexados</text>
-                <path d="M140 85 H200"/>
-                <rect x="202" y="55" width="130" height="60" rx="10"/>
-                <text x="267" y="80" text-anchor="middle">Índice de</text>
-                <text class="sub" x="267" y="98" text-anchor="middle">embeddings</text>
-                <path d="M332 85 H392"/>
-                <rect x="394" y="55" width="130" height="60" rx="10"/>
-                <text x="459" y="80" text-anchor="middle">Recuperação</text>
-                <text class="sub" x="459" y="98" text-anchor="middle">trechos relevantes</text>
-                <path d="M524 85 H584"/>
-                <rect x="500" y="130" width="130" height="34" rx="8" style="display:none"/>
-            </svg>
-            <svg class="ragdiagram" viewBox="0 0 640 90" role="presentation" style="margin-top:-4px">
-                <defs></defs>
-                <rect x="202" y="10" width="236" height="60" rx="10"/>
-                <text x="320" y="36" text-anchor="middle">Geração da resposta</text>
-                <text class="sub" x="320" y="54" text-anchor="middle">pelo modelo, com base no corpus</text>
-            </svg>`;
-        }
-
         function detailHTML(a, c, ai, ci) {
             const pid = `a${ai}-c${ci}`;
             let h = `<article class="detail g${a.g}" id="detail-${pid}">`;
-            h += `<div class="detailhead"><p class="eyebrow">${esc(a.t)}</p>${c.max ? `<button type="button" class="maxbtn" data-maximize aria-label="Maximizar caixa" aria-pressed="false">${ICON_MAX}</button>` : ''}</div>`;
+            h += `<div class="detailhead"><p class="eyebrow">${esc(a.t)}</p><button type="button" class="maxbtn" data-maximize aria-label="Maximizar caixa" aria-pressed="false">${ICON_MAX}</button></div>`;
             h += `<h3>${esc(c.t)}</h3>`;
             if (c.k) h += `<section><h4>Ideia central</h4><p>${esc(c.k)}</p></section>`;
             if (c.list) h += `<section><ul>${c.list.map(x => `<li>${esc(x)}</li>`).join('')}</ul></section>`;
+            if (c.items) {
+                const itemsHTML = items => `<ul>${items.map(item => `<li>${esc(item.t)}${item.children ? itemsHTML(item.children) : ''}</li>`).join('')}</ul>`;
+                h += `<section>${itemsHTML(c.items)}</section>`;
+            }
             if (c.rows) {
                 const head = c.head ? `<thead><tr>${c.head.map(x => `<th>${esc(x)}</th>`).join('')}</tr></thead>` : '';
                 h += `<section><div class="tablewrap"><table>${head}<tbody>${c.rows.map(r => `<tr>${r.map((x, i) => `<td${i > 0 && /\d/.test(x) && r.length === 2 ? ' class="num"' : ''}>${esc(x)}</td>`).join('')}</tr>`).join('')}</tbody></table></div></section>`;
             }
-            if (c.diagram === 'rag') h += `<section>${ragDiagramHTML()}</section>`;
             if (c.link) h += `<section><a class="linkbtn" href="${esc(c.link.url)}" target="_blank" rel="noopener noreferrer">${esc(c.link.label)} ↗</a></section>`;
-            if (c.prompt) h += `<section class="promptbox"><h4>Espaço para o prompt</h4><textarea class="promptarea" data-prompt-id="${pid}" placeholder="Cole ou escreva aqui o prompt usado nesta etapa..."></textarea><button class="copy" type="button" data-copy-prompt="${pid}">Copiar prompt</button></section>`;
+            if (c.prompt) h += `<section class="promptbox"><h4>Prompt sugerido — editável</h4><textarea class="promptarea" data-prompt-id="${pid}" placeholder="Cole ou escreva aqui o prompt usado nesta etapa...">${typeof c.prompt === 'string' ? esc(c.prompt) : ''}</textarea><button class="copy" type="button" data-copy-prompt="${pid}">Copiar prompt</button></section>`;
             if (c.attn) h += `<section><p class="attn"><strong>Atenção.</strong> ${esc(c.attn)}</p></section>`;
             return h + '</article>';
         }
@@ -891,7 +866,7 @@
             h += `<div class="col col1"><ul>${AXES.map((a, i) => `<li><button type="button" class="node axis g${a.g}" data-a="${i}" aria-expanded="${st.a === i}"><span>${esc(a.t)}</span><span class="meta">${a.kids.length}</span></button></li>`).join('')}</ul></div>`;
             if (st.a !== null) {
                 const a = AXES[st.a];
-                h += `<div class="col col2 g${a.g}"><ul>${a.kids.map((c, j) => `<li class="kidrow"><button type="button" class="node kid g${a.g}" data-c="${j}" aria-expanded="${st.c === j}">${esc(c.t)}</button>${c.max ? `<button type="button" class="kidmax" data-maxkid="${j}" aria-label="Abrir em tela cheia">${ICON_MAX}</button>` : ''}</li>`).join('')}</ul></div>`;
+                h += `<div class="col col2 g${a.g}"><ul>${a.kids.map((c, j) => `<li class="kidrow"><button type="button" class="node kid g${a.g}" data-c="${j}" aria-expanded="${st.c === j}">${esc(c.t)}</button></li>`).join('')}</ul></div>`;
             } else {
                 h += '<div class="col col2"></div>';
             }
@@ -925,7 +900,7 @@
                     h += '<ul class="kids">';
                     a.kids.forEach((c, j) => {
                         const o2 = st.c === j;
-                        h += `<li><div class="kidrow"><button type="button" class="node kid" data-c="${j}" aria-expanded="${o2}">${esc(c.t)}</button>${c.max ? `<button type="button" class="kidmax" data-maxkid="${j}" aria-label="Abrir em tela cheia">${ICON_MAX}</button>` : ''}</div>${o2 ? detailHTML(a, c, i, j) : ''}</li>`;
+                        h += `<li><div class="kidrow"><button type="button" class="node kid" data-c="${j}" aria-expanded="${o2}">${esc(c.t)}</button></div>${o2 ? detailHTML(a, c, i, j) : ''}</li>`;
                     });
                     h += '</ul>';
                 }
@@ -984,10 +959,19 @@
             backdrop.className = 'backdrop';
             backdrop.id = 'detail-backdrop';
             backdrop.addEventListener('click', closeFullscreen);
+            fullPlaceholder = document.createComment('detail fullscreen placeholder');
+            el.before(fullPlaceholder);
             document.body.appendChild(backdrop);
+            document.body.appendChild(el);
             el.classList.add('is-full');
             const btn = el.querySelector('[data-maximize]');
-            if (btn) { btn.innerHTML = ICON_MIN; btn.setAttribute('aria-pressed', 'true'); btn.setAttribute('aria-label', 'Restaurar tamanho'); }
+            if (btn) {
+                btn.innerHTML = ICON_MIN;
+                btn.setAttribute('aria-pressed', 'true');
+                btn.setAttribute('aria-label', 'Restaurar tamanho');
+                fullCloseHandler = closeFullscreen;
+                btn.addEventListener('click', fullCloseHandler);
+            }
             fullEl = el;
         }
 
@@ -995,21 +979,24 @@
             if (!fullEl) return;
             fullEl.classList.remove('is-full');
             const btn = fullEl.querySelector('[data-maximize]');
-            if (btn) { btn.innerHTML = ICON_MAX; btn.setAttribute('aria-pressed', 'false'); btn.setAttribute('aria-label', 'Maximizar caixa'); }
+            if (btn) {
+                btn.innerHTML = ICON_MAX;
+                btn.setAttribute('aria-pressed', 'false');
+                btn.setAttribute('aria-label', 'Maximizar caixa');
+                if (fullCloseHandler) btn.removeEventListener('click', fullCloseHandler);
+            }
+            if (fullPlaceholder && fullPlaceholder.parentNode) {
+                fullPlaceholder.parentNode.insertBefore(fullEl, fullPlaceholder);
+                fullPlaceholder.remove();
+            }
+            fullPlaceholder = null;
+            fullCloseHandler = null;
             const backdrop = document.getElementById('detail-backdrop');
             if (backdrop) backdrop.remove();
             fullEl = null;
         }
 
         map.addEventListener('click', e => {
-            const mk = e.target.closest('[data-maxkid]');
-            if (mk) {
-                st.c = +mk.dataset.maxkid;
-                render();
-                const d = map.querySelector('.detail');
-                if (d) openFullscreen(d);
-                return;
-            }
             const mx = e.target.closest('[data-maximize]');
             if (mx) {
                 const d = mx.closest('.detail');
@@ -1065,7 +1052,7 @@
             } catch (err) { fallback(); }
         }
 
-        mq.addEventListener('change', render);
+        mq.addEventListener('change', () => { closeFullscreen(); render(); });
         window.addEventListener('resize', () => { if (mq.matches) requestAnimationFrame(draw); });
         if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (mq.matches) draw(); });
         render();
