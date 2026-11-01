@@ -871,7 +871,6 @@
         let st = { a: null, c: null };
         let fullEl = null;
         let fullPlaceholder = null;
-        let fullCloseHandler = null;
 
         function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
 
@@ -1045,8 +1044,6 @@
                 btn.innerHTML = ICON_MIN;
                 btn.setAttribute('aria-pressed', 'true');
                 btn.setAttribute('aria-label', 'Restaurar tamanho');
-                fullCloseHandler = closeFullscreen;
-                btn.addEventListener('click', fullCloseHandler);
             }
             fullEl = el;
         }
@@ -1059,20 +1056,18 @@
                 btn.innerHTML = ICON_MAX;
                 btn.setAttribute('aria-pressed', 'false');
                 btn.setAttribute('aria-label', 'Maximizar caixa');
-                if (fullCloseHandler) btn.removeEventListener('click', fullCloseHandler);
             }
             if (fullPlaceholder && fullPlaceholder.parentNode) {
                 fullPlaceholder.parentNode.insertBefore(fullEl, fullPlaceholder);
                 fullPlaceholder.remove();
             }
             fullPlaceholder = null;
-            fullCloseHandler = null;
             const backdrop = document.getElementById('detail-backdrop');
             if (backdrop) backdrop.remove();
             fullEl = null;
         }
 
-        map.addEventListener('click', e => {
+        document.addEventListener('click', e => {
             const mx = e.target.closest('[data-maximize]');
             if (mx) {
                 const d = mx.closest('.detail');
