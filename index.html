@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>Fluxo de análise de conteúdo com Gemini Notebook</title>
+    <title>Artefatos com IA Generativa</title>
     <link rel="icon" type="image/svg+xml" href="logo-gemini-notebook.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -702,16 +702,15 @@
                         <span>Head de Inovação</span>
                     </div>
                 </div>
-                <h1>Fluxo de análise de conteúdo com Gemini Notebook</h1>
-                <p>Clique em uma etapa para abrir os itens. Nos detalhes, consulte as orientações e os prompts
-                    sugeridos, que podem ser editados para registrar o uso na análise.</p>
+                <h1>Artefatos com IA Generativa</h1>
+                <p>Clique em uma categoria para abrir os itens. Nos detalhes, consulte as orientações e os prompts
+                    sugeridos, que podem ser editados para registrar o uso.</p>
             </div>
             <div class="tools">
                 <ul class="legend" aria-label="Legenda das cores">
-                    <li class="g1"><i></i>Preparar a análise</li>
-                    <li class="g2"><i></i>Codificar e analisar</li>
-                    <li class="g3"><i></i>Garantir rigor</li>
-                    <li class="g4"><i></i>Método, revisão e ferramentas</li>
+                    <li class="g1"><i></i>Agentes de IA</li>
+                    <li class="g2"><i></i>Skills de IA</li>
+                    <li class="g3"><i></i>Artefatos</li>
                 </ul>
                 <button class="reset" id="reset" type="button">Recolher tudo</button>
                 <button class="themetoggle" id="themeToggle" type="button"
@@ -725,142 +724,88 @@
     <script>
         const AXES = [
             {
-                t: 'Corpus de análise', g: 1, kids: [
+                t: 'Agentes de IA', g: 1, kids: [
                     {
-                        t: 'O que é um corpus de análise',
-                        k: 'É o conjunto de documentos — artigos, PDFs, transcrições, entrevistas e outros materiais — que serão lidos, codificados e analisados ao longo da pesquisa. O corpus é a base de evidências: dele virão as afirmações, os autores e os trechos usados nas etapas seguintes do método.',
-                        list: ['Reunir e organizar esse material é o primeiro passo, antes de definir objetivos ou criar códigos.', 'Quanto mais claro e delimitado o corpus, mais fácil é clusterizar e codificar depois.']
+                        t: 'O que são',
+                        k: 'Sistemas de IA configurados para perseguir um objetivo, interpretar informações e executar uma sequência de etapas ou ações. Podem usar ferramentas e consultar fontes, com supervisão humana adequada.'
                     },
                     {
-                        t: 'Baixar o corpus',
-                        k: 'O material desta análise está disponível para download na pasta abaixo. Baixe e organize os arquivos antes de avançar para a definição dos objetivos.',
-                        link: { label: 'Abrir pasta do corpus no Google Drive', url: 'https://drive.google.com/drive/folders/1C0xu04dhntBdMdimbuBrqWu0IGirP0H7?usp=sharing' },
-                        attn: 'Renomeie os documentos depois de baixá-los, para identificá-los com facilidade quando forem anexados ao Gemini Notebook.'
-                    }
-                ]
-            },
-            {
-                t: '1. Definição dos objetivos', g: 1, kids: [
-                    {
-                        t: 'Objetivos da análise',
-                        k: 'Toda análise precisa partir de um objetivo de busca: defina o que gostaria de encontrar na literatura.',
-                        items: [
-                            { t: 'Quais são os objetivos da análise?', children: [{ t: 'Uma análise precisa partir de um objetivo de busca. O que gostaria de encontrar na literatura?' }] },
-                            {
-                                t: 'Exemplos',
-                                children: [
-                                    { t: 'Identificar os principais desafios do uso da IA Generativa no ensino médico.' },
-                                    { t: 'Quais são os principais benefícios do uso de IA Generativa na formação em medicina?' },
-                                    { t: 'Quais são os principais autores que tratam deste tema?' },
-                                    { t: 'Quais são os temas de pesquisa que permanecem em aberto?' },
-                                    { t: 'Em qual medida existem métodos para ensino de IA na graduação?' }
-                                ]
-                            }
+                        t: 'Exemplos em Medicina',
+                        list: [
+                            'Agente que organiza artigos fornecidos pelo docente e destaca métodos, resultados e limitações.',
+                            'Agente tutor que conduz uma discussão de caso clínico por etapas, fazendo perguntas ao estudante.',
+                            'Agente que transforma um protocolo de aula em um roteiro de revisão, sujeito à conferência do professor.'
                         ]
+                    },
+                    {
+                        t: 'Cuidado',
+                        attn: 'Um agente pode produzir informações incorretas. Verifique fontes, conteúdo clínico e adequação pedagógica antes de usar.'
                     }
                 ]
             },
             {
-                t: '2. Organização do corpus', g: 1, kids: [
+                t: 'Skills de IA', g: 2, kids: [
                     {
-                        t: 'Clusterização e identificação dos arquivos',
-                        k: 'Inicie clusterizando o corpus de análise e organize os arquivos que serão examinados.',
-                        items: [
-                            { t: 'Separe os arquivos que serão analisados.' },
-                            { t: 'Renomeie-os com um padrão, por exemplo: artigo-1.pdf, artigo-2.pdf etc. Isso ajuda no rastreio da informação.' }
+                        t: 'O que são',
+                        k: 'Instruções e recursos reutilizáveis que ensinam um sistema de IA a realizar uma tarefa de modo consistente. Podem definir etapas, critérios, formato de saída e materiais de referência.'
+                    },
+                    {
+                        t: 'Exemplos em Medicina',
+                        list: [
+                            'Skill para estruturar resumos de artigos com objetivo, método, resultados e limitações.',
+                            'Skill para criar questões de múltipla escolha alinhadas a objetivos de aprendizagem e explicar cada alternativa.',
+                            'Skill para padronizar referências bibliográficas conforme a norma solicitada.'
                         ]
-                    }
-                ]
-            },
-            {
-                t: '3. Criação dos códigos', g: 2, kids: [
-                    {
-                        t: 'Propor códigos alinhados aos objetivos',
-                        k: 'Com base nos objetivos da análise, estabeleça os códigos de análise. Você pode usar qualquer ferramenta de IA que preferir: Claude, Gemini, ChatGPT etc.',
-                        items: [
-                            { t: 'Solicite até 20 códigos, organizados por categoria, código e descrição.' },
-                            { t: 'As categorias e os códigos devem estar alinhados aos objetivos e fundamentados no conteúdo das fontes.' }
-                        ],
-                        prompt: 'Você é um assistente de pesquisa e vai apoiar uma análise de conteúdo segundo Bardin. Com base nos objetivos da análise a seguir e nos artigos em PDF fornecidos, proponha até 20 códigos para orientar a análise do corpus. Organize o resultado em uma tabela com as colunas Categoria, Código e Descrição do código. As categorias e os códigos devem estar alinhados aos objetivos e fundamentados no conteúdo das fontes. Regra: não acrescente informações que não estejam nos artigos. Os objetivos da análise são: [informe os objetivos desta análise]'
-                    }
-                ]
-            },
-            {
-                t: '4. Análise dos materiais', g: 2, kids: [
-                    {
-                        t: 'Anexar e contextualizar os materiais',
-                        k: 'Anexe os materiais ao Gemini Notebook e crie um prompt de contextualização para as próximas etapas.',
-                        attn: 'Use apenas as informações presentes nos materiais. Se algo não estiver claro ou não aparecer nos arquivos, informe isso em vez de inferir.',
-                        prompt: 'Os arquivos anexados são o corpus documental desta pesquisa para uma análise de conteúdo segundo Bardin. Leia-os como um conjunto de artigos científicos e use apenas as informações presentes nesses materiais. Considere os objetivos da análise e os códigos definidos anteriormente como referência para as próximas etapas. Preserve o sentido original dos textos, diferencie os artigos quando necessário e indique a fonte usada para cada informação. Se algo não estiver claro ou não aparecer nos arquivos, informe isso em vez de inferir. Nunca faça inferências. Quando não houver a informação, informe na resposta.'
                     },
                     {
-                        t: 'Conduzir a primeira etapa por código',
-                        k: 'Faça a análise por categorias e examine um código por vez. Preserve o contexto e diferencie os artigos quando necessário.',
-                        items: [
-                            { t: 'Rastreie cada achado: afirmação, evidência, autor-ano e documento.' },
-                            { t: 'Se não encontrar evidências para um código, informe isso claramente.' }
-                        ],
-                        prompt: 'Conduza a primeira etapa da análise de conteúdo segundo Bardin, examinando os artigos com base nos códigos definidos anteriormente. Analise um código por vez, começando por [nome do código]. Identifique trechos pertinentes e apresente cada achado em uma tabela com as colunas Afirmação, Evidência (trecho ou síntese fiel), Autor-ano e Documento (nome do arquivo). Relacione cada afirmação ao código, preserve o contexto do trecho e não infira informações que não estejam nas fontes. Se não encontrar evidências para o código, informe isso claramente.'
-                    },
-                    {
-                        t: 'Registrar os achados e fundamentar a discussão',
-                        k: 'Organize os achados em um arquivo separado. Fundamente a discussão relacionando cada afirmação às evidências dos artigos e à sua fonte.'
+                        t: 'Diferença prática',
+                        k: 'Uma skill descreve como executar uma tarefa; um agente pode usar uma ou mais skills para cumprir um objetivo em várias etapas.'
                     }
                 ]
             },
             {
-                t: '5. Técnicas para garantir rigor', g: 3, kids: [
+                t: 'Artefatos', g: 3, kids: [
                     {
-                        t: 'Lacunas na literatura',
-                        k: 'Identifique temas pouco explorados ou ausentes, limitações apontadas pelos autores e questões que permanecem sem resposta.',
-                        attn: 'Diferencie lacunas explicitamente apontadas pelos autores das observadas a partir do conjunto de artigos. Não trate ausência de informação no corpus como ausência na literatura em geral.',
-                        prompt: 'Com base nos artigos do corpus, identifique lacunas na literatura relacionadas aos objetivos da análise. Considere temas pouco explorados ou ausentes, limitações apontadas pelos autores e questões que permanecem sem resposta. Para cada lacuna, apresente uma tabela com Lacuna identificada, Justificativa baseada no corpus, Evidência, Autor-ano e Documento (nome do arquivo). Diferencie lacunas explicitamente apontadas pelos autores das observadas a partir do conjunto de artigos. Use apenas as fontes fornecidas e não trate ausência de informação no corpus como ausência na literatura em geral.'
+                        t: 'Criar referência ABNT',
+                        k: 'A partir de uma entrada, como DOI, URL ou dados bibliográficos, converte os dados para uma referência no padrão ABNT solicitado.',
+                        tool: 'Claude',
+                        prompt: 'Você é um assistente de normalização bibliográfica. A partir dos dados fornecidos a seguir (DOI, URL ou dados bibliográficos como autor, título, veículo e ano), gere a referência completa no padrão ABNT (NBR 6023). Verifique se todos os elementos obrigatórios estão presentes e, caso falte alguma informação essencial, informe claramente o que não pôde ser determinado em vez de inventar dados. Apresente apenas a referência formatada, pronta para uso. Dados fornecidos: [cole aqui o DOI, a URL ou os dados bibliográficos]'
                     },
                     {
-                        t: 'Principais métodos do corpus',
-                        k: 'Identifique os métodos utilizados e agrupe os estudos que adotam métodos semelhantes, preservando as diferenças entre eles.',
-                        attn: 'Use apenas informações do corpus e sinalize quando um estudo não informar claramente seu método.',
-                        prompt: 'Com base nos artigos, identifique os métodos utilizados e agrupe os estudos que adotam métodos semelhantes. Apresente uma tabela com Grupo de métodos, Descrição, Estudos incluídos (autor-ano) e Evidência (trecho ou síntese fiel), indicando também o Documento (nome do arquivo) de cada estudo. Preserve as diferenças entre métodos semelhantes, use apenas informações do corpus e sinalize quando um estudo não informar claramente seu método.'
+                        t: 'Criar conclusão',
+                        k: 'A partir de um texto, sintetiza os principais pontos do artigo em uma proposta de conclusão, sem acrescentar afirmações que não estejam apoiadas pelo texto.',
+                        tool: 'Claude',
+                        prompt: 'Você vai apoiar a escrita acadêmica de uma conclusão. Leia o texto do artigo anexado e produza uma proposta de conclusão que sintetize os principais achados, retome o objetivo da pesquisa e aponte implicações e limitações mencionadas pelos autores. Use apenas informações presentes no texto, sem acrescentar afirmações, dados ou interpretações que não estejam apoiadas pelo conteúdo fornecido. Se algum ponto não estiver claro no texto, informe isso em vez de inferir. Texto do artigo: [cole ou anexe o artigo]'
                     },
                     {
-                        t: 'Limitações nos estudos',
-                        k: 'Registre as limitações mencionadas pelos autores ou claramente sustentadas pelo texto, sem inferências.',
-                        attn: 'Se um artigo não mencionar limitações, indique isso claramente.',
-                        prompt: 'Com base nos artigos do corpus, identifique as limitações de cada estudo. Registre apenas limitações mencionadas pelos autores ou claramente sustentadas pelo texto, sem inferências. Apresente uma tabela com Limitação, Tipo (declarada pelos autores ou identificada no texto), Evidência, Autor-ano e Documento (nome do arquivo). Se um artigo não mencionar limitações, indique isso claramente.'
+                        t: 'Criar resumo expandido',
+                        k: 'A partir do artigo, produz um resumo mais detalhado, organizado conforme as seções e os critérios definidos para a atividade.',
+                        tool: 'Claude',
+                        prompt: 'Com base no artigo anexado, produza um resumo expandido organizado nas seguintes seções: introdução/objetivo, método, resultados, discussão e conclusão. Utilize apenas as informações presentes no artigo, preservando o sentido original dos autores e indicando quando alguma seção não apresentar informações suficientes. Respeite o limite e os critérios definidos para a atividade e mantenha linguagem acadêmica. Critérios da atividade: [informe limite de palavras e demais critérios]. Artigo: [cole ou anexe o artigo]'
                     },
                     {
-                        t: 'Pesquisas futuras (agenda de pesquisa)',
-                        k: 'Agrupe sugestões semelhantes e diferencie recomendações explícitas dos autores de possibilidades sintetizadas a partir do conjunto de estudos.',
-                        prompt: 'Com base nos artigos do corpus, identifique as pesquisas futuras sugeridas pelos autores e organize-as em uma agenda de pesquisa. Agrupe sugestões semelhantes e apresente uma tabela com Tema ou questão de pesquisa, Pesquisa futura sugerida, Justificativa no corpus, Autor-ano e Documento (nome do arquivo). Diferencie recomendações explícitas dos autores de possibilidades sintetizadas a partir do conjunto de estudos. Use apenas informações das fontes, sem apresentar inferências como recomendações dos autores.'
-                    }
-                ]
-            },
-            {
-                t: '6. Retroalimentar o método', g: 4, kids: [
+                        t: 'Criar flashcards',
+                        k: 'A partir do conteúdo, cria cartões interativos de pergunta e resposta para apoiar a revisão ativa.',
+                        tool: 'Claude',
+                        prompt: 'Com base no conteúdo fornecido, crie [quantidade] flashcards no formato pergunta e resposta para apoiar a revisão ativa do tema. Cada cartão deve conter uma pergunta objetiva na frente e uma resposta clara e concisa no verso, usando apenas informações presentes no material. Organize os cartões por ordem de complexidade crescente e indique, quando possível, a seção ou página de origem. Conteúdo: [cole ou anexe o material]'
+                    },
                     {
-                        t: 'Descrever as ferramentas e técnicas no método',
-                        k: 'Adicione as ferramentas e técnicas utilizadas à seção de método. Exemplo: A análise de conteúdo foi conduzida com apoio do Gemini Notebook, utilizado para organizar e examinar o corpus de artigos científicos. Inicialmente, os documentos foram inseridos na plataforma e contextualizados como fontes da pesquisa, tendo como referência os objetivos da análise. Em seguida, foram elaboradas categorias e códigos alinhados a esses objetivos. O conteúdo dos artigos foi analisado por código, com registro das afirmações, evidências textuais, autoria e documento de origem. Também foram sintetizadas as lacunas apontadas ou observáveis no corpus, os métodos empregados, as limitações dos estudos e as sugestões de pesquisas futuras. As respostas geradas foram conferidas com os documentos originais, preservando-se a rastreabilidade das evidências e distinguindo as informações explicitamente declaradas pelos autores das sínteses produzidas a partir do conjunto de estudos. Maiores detalhes estão disponibilizados no Termo de Declaração de Uso de IA, no Anexo A.'
-                    }
-                ]
-            },
-            {
-                t: '7. Realizar um polimento no texto', g: 4, kids: [
+                        t: 'Criar caso clínico',
+                        k: 'A partir de um conteúdo, cria um caso interativo em etapas, com perguntas para o estudante raciocinar e receber feedback.',
+                        tool: 'Gemini',
+                        prompt: 'Com base no conteúdo fornecido, crie um caso clínico interativo dividido em etapas (anamnese, exame físico, hipóteses diagnósticas, exames complementares e conduta). A cada etapa, apresente uma pergunta para que eu, como estudante, raciocine antes de avançar, e só então revele a resposta esperada com uma breve justificativa clínica baseada no material fornecido. Use apenas informações compatíveis com o conteúdo fornecido e com a prática clínica reconhecida, sinalizando quando estiver generalizando além do material. Conteúdo de referência: [cole ou anexe o material]'
+                    },
                     {
-                        t: 'Revisar a progressão e a redação',
-                        k: 'Revise o texto final para que o fluxo da análise seja cadenciado, com progressão lógica entre os argumentos e as afirmações.',
-                        items: [
-                            { t: 'Cuidado com o texto truncado ou blocado.' },
-                            { t: 'Evite texto copiado e colado, sob qualquer hipótese.' }
-                        ]
-                    }
-                ]
-            },
-            {
-                t: 'Ferramentas e técnicas', g: 4, kids: [
+                        t: 'Criar questões',
+                        k: 'A partir de uma base de conteúdo, cria questões no estilo ENAMED, com alternativas, gabarito e justificativas, de acordo com os objetivos de aprendizagem.',
+                        tool: 'Claude',
+                        prompt: 'Com base no conteúdo fornecido e nos objetivos de aprendizagem a seguir, elabore [quantidade] questões de múltipla escolha no estilo ENAMED, cada uma com um enunciado contextualizado (texto-base ou caso clínico breve), cinco alternativas, gabarito indicado e justificativa de cada alternativa (correta e incorretas). Baseie as questões apenas no conteúdo fornecido. Objetivos de aprendizagem: [informe os objetivos]. Conteúdo: [cole ou anexe o material]'
+                    },
                     {
-                        t: 'Notas de uso',
-                        k: 'Dois cuidados práticos para manter a qualidade das respostas no Gemini Notebook.',
-                        list: ['Renomeie os documentos antes de anexar, para identificá-los com facilidade.', 'Peça a análise por partes, para não poluir a janela de contexto.']
+                        t: 'Criar app de quiz',
+                        k: 'Um aplicativo que recebe questões no estilo ENAMED para estudo, permite respondê-las e apresenta feedback.',
+                        tool: 'Lovable',
+                        prompt: 'Crie um aplicativo web de quiz para estudo que receba uma lista de questões de múltipla escolha no estilo ENAMED (enunciado, alternativas, gabarito e justificativa). O aplicativo deve permitir que o usuário responda uma questão por vez, indicar se a resposta está correta ou incorreta, exibir a justificativa após a resposta e mostrar a pontuação final ao término do quiz. Use as questões fornecidas abaixo como conteúdo inicial. Questões: [cole aqui as questões no estilo ENAMED]'
                     }
                 ]
             }
@@ -878,7 +823,7 @@
         const ICON_MIN = '<svg viewBox="0 0 24 24"><path d="M4 9h5V4M20 9h-5V4M4 15h5v5M20 15h-5v5"/></svg>';
         const ICON_SUN = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v3M12 18.5v3M3.5 12h3M17.5 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg>';
         const ICON_MOON = '<svg viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>';
-        const ICON_GEMINI = '<svg class="hublogo" viewBox="0 0 32 32" aria-hidden="true"><path d="M16,32C24.8366,32,32,24.8366,32,16,32,7.16344,24.8366,0,16,0,7.16344,0,0,7.16344,0,16,0,24.8366,7.16344,32,16,32Z" fill="#fff"/><path d="m6.83486,17.8094c0,-0.2801 -0.00002,-0.1373 -0.00278,-0.3654m10.12792,0.3102 0.0009,0.0552m-10.12506,0 -0.00381,-0.5019m14.22687,0 -0.0008,0.5019M6.8369,17.8095 6.83203,17.1677C6.83203,12.1046,10.9366,8,15.9997,8c5.0631,0,9.1677,4.1046,9.1677,9.1677v0.6418" stroke="#3186ff" stroke-width="2.36938" stroke-miterlimit="10"/><path d="m6.83486,17.8084c0,-0.2801 -0.00002,-0.1373 -0.00278,-0.3654m0.00376,0.3654 -0.00381,-0.5019c0,-3.959,3.27017,-7.0585,7.16837,-7.0585c3.8982,0,7.0585,3.1603,7.0585,7.0585l-0.0008,0.5019M6.8369,17.8085 6.83203,17.1667" stroke="#4fa0ff" stroke-width="2.36938" stroke-miterlimit="10"/><path d="m22.2422,21.0473c0,0.3774,-0.306,0.6834,-0.6835,0.6834h-1.0024c-0.3775,0,-0.6835,-0.306,-0.6835,-0.6834v-3.2387h2.3694z" fill="#4fa0ff"/><path d="m26.3477,21.0473c0,0.3774,-0.306,0.6834,-0.6835,0.6834h-1.0024c-0.3775,0,-0.6835,-0.306,-0.6835,-0.6834v-3.2387h2.3694z" fill="#3186ff"/><path d="m11.7403,11.3486c3.4941,0,6.3335,2.7985,6.4013,6.2764h0.002v0.0898c0.0001,0.0124,0.001,0.0248,0.001,0.0372h-0.001l0.001,0.0361h-0.001v3.2578c0,0.3775,-0.3061,0.6836,-0.6836,0.6836h-1.002c-0.3774,0,-0.6836,-0.3061,-0.6836,-0.6836v-1.9312c-0.0001,-2.228,-1.8062,-4.0342,-4.0341,-4.0342c-1.1576,0,-2.08383,0.4033,-2.71293,1.0293c-0.60929,0.6064,-1.00166,1.4838,-1.01074,2.584l0.0039,0.4677h-0.76042c0,0.0029,0,0.0059,0,0.0088h-1.18262l-0.13183,0.0001h1.31445v3.2383c0,0.3774,-0.30612,0.6836,-0.68359,0.6836h-0.99961c-0.37747,0,-0.68359,-0.3062,-0.68359,-0.6836v-3.2383h0.00098v-0.0001h-0.00098c0,-0.0536,0.00002,-0.0908,0,-0.1172l-0.00195,-0.0801c-0.00042,-0.0253,-0.00124,-0.0615,-0.00195,-0.1201c-0.00022,-0.0186,0.00106,-0.0372,0.00098,-0.0557l-0.00098,-0.0859,0.00195,-0.0001 -0.00195,-0.1387,0.00391,-0.001c0.04737,-1.9232,0.65364,-3.3597,1.70796,-4.4088c1.11339,-1.1079,2.65913,-1.7187,4.38383,-1.7188z" fill="url(#hublogoGrad)"/><defs><radialGradient id="hublogoGrad" cx="0" cy="0" r="1" gradientTransform="matrix(-7.56354,0.455687,-0.64459,-10.7013,16.0231,18.7229)" gradientUnits="userSpaceOnUse"><stop offset="0.566674" stop-color="#76BBFF"/><stop offset="1" stop-color="#A9A8FF"/></radialGradient></defs></svg>';
+        const ICON_SPARK = '<svg class="hublogo" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 16.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8z"/></svg>';
 
         const themeToggle = document.getElementById('themeToggle');
 
@@ -916,6 +861,7 @@
             let h = `<article class="detail g${a.g}" id="detail-${pid}">`;
             h += `<div class="detailhead"><p class="eyebrow">${esc(a.t)}</p><button type="button" class="maxbtn" data-maximize aria-label="Maximizar caixa" aria-pressed="false">${ICON_MAX}</button></div>`;
             h += `<h3>${esc(c.t)}</h3>`;
+            if (c.tool) h += `<section><h4>Ferramenta</h4><p>${esc(c.tool)}</p></section>`;
             if (c.k) h += `<section><h4>Ideia central</h4><p>${esc(c.k)}</p></section>`;
             if (c.list) h += `<section><ul>${c.list.map(x => `<li>${esc(x)}</li>`).join('')}</ul></section>`;
             if (c.items) {
@@ -932,7 +878,7 @@
             return h + '</article>';
         }
 
-        const hubHTML = `<div class="hub"><div class="hubtitle">${ICON_GEMINI}<b>Análise de conteúdo com Gemini Notebook</b></div><span>Do objetivo ao rigor, passo a passo</span></div>`;
+        const hubHTML = `<div class="hub"><div class="hubtitle">${ICON_SPARK}<b>Artefatos com IA Generativa</b></div><span>De agentes e skills a artefatos prontos para usar</span></div>`;
 
         function renderWide() {
             map.className = 'map wide';
